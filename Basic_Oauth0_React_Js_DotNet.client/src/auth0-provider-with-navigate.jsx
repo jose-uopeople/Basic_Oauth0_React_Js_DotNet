@@ -9,12 +9,13 @@ export const Auth0ProviderWithNavigate = ({ children }) => {
     const domain = "dev-32653986.us.auth0.com";
     const clientId = "JOhu9BjADXpjtZPL03cUl9NxBfRQzFMp";
     const redirectUri = "https://localhost:5173/callback";
+    const audience = "https://hello-world.example.com";
 
     const onRedirectCallback = (appState) => {
         navigate(appState?.returnTo || window.location.pathname);
     };
 
-    if (!(domain && clientId && redirectUri)) {
+    if (!(domain && clientId && redirectUri && audience)) {
         return null;
     }
 
@@ -23,6 +24,7 @@ export const Auth0ProviderWithNavigate = ({ children }) => {
             domain={domain}
             clientId={clientId}
             authorizationParams={{
+                audience: audience,
                 redirect_uri: redirectUri,
             }}
             onRedirectCallback={onRedirectCallback}
