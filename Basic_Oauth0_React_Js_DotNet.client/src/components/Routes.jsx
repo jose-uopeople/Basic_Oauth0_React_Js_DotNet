@@ -1,7 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { LoginCallback } from '@okta/okta-react';
-import Authenticated from '../components/Authenticated';
+import { AuthenticationGuard } from "./authentication-guard";
 
 import About from '../components/About';
 import WeatherForecastPage from '../components/WeatherForecastPage';
@@ -12,8 +11,11 @@ const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/about" element={<About />} />
-            <Route path='/callback' element={<LoginCallback loadingElement={<Loading />} />} />
-            <Route path='/weatherforecastpage' element={<Authenticated success={<WeatherForecastPage />} />} />
+            <Route path="/callback" element={<Loading />} />
+            <Route
+                path='/weatherforecastpage'
+                element={<AuthenticationGuard component={WeatherForecastPage} />}
+            />
         </Routes>
     );
 };

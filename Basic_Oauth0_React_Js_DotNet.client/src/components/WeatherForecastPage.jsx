@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import '../App.css';
 
 function WeatherForecastPage() {
@@ -8,11 +8,24 @@ function WeatherForecastPage() {
 
     const [forecasts, setForecasts] = useState();
 
-    if (!user) {
-        return null;
-    }
+    useEffect(() => {
+        async function populateWeatherData() {
 
-    populateWeatherData();
+            const accessToken = await getAccessTokenSilently();
+
+            const response = await fetch('weatherforecast', {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                },
+            });
+            const data = await response.json();
+            setForecasts(data);
+        }
+
+        if (user) {
+            populateWeatherData();
+        }
+    }, [user, getAccessTokenSilently]);
 
     const contents = forecasts === undefined
         ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
@@ -46,18 +59,6 @@ function WeatherForecastPage() {
         </div>
     );
 
-    async function populateWeatherData() {
-
-        const accessToken = await getAccessTokenSilently();
-
-        const response = await fetch('weatherforecast', {
-            headers: {
-                Authorization: `Bearer ${accessToken}`
-            },
-        });
-        const data = await response.json();
-        setForecasts(data);
-    }
 }
 
 export default WeatherForecastPage;
