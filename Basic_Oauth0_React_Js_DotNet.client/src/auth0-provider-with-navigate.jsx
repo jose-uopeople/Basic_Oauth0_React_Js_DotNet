@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 export const Auth0ProviderWithNavigate = ({ children }) => {
     const navigate = useNavigate();
 
-    const domain = "dev-32653986.us.auth0.com";
-    const clientId = "JOhu9BjADXpjtZPL03cUl9NxBfRQzFMp";
+    const domain = "dev-z0qqt6is4oql0yhw.us.auth0.com";
+    const clientId = "5uLSp0MbJabmkhlplsm9HxpEDNErfyPU";
     const redirectUri = "https://localhost:5173/callback";
-    const audience = "https://hello-world.example.com";
+    const audience = "WrapUp.WebAPI";
 
     const onRedirectCallback = (appState) => {
         navigate(appState?.returnTo || window.location.pathname);

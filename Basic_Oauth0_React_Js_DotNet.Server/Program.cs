@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authentication;
 
 namespace basic_oauth0_react_js_dotnet.Server
 {
@@ -23,8 +21,8 @@ namespace basic_oauth0_react_js_dotnet.Server
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
             {
-                options.Authority = "https://dev-32653986.us.auth0.com/";
-                options.Audience = "https://hello-world.example.com";
+                options.Authority = "https://dev-z0qqt6is4oql0yhw.us.auth0.com/";
+                options.Audience = "WrapUp.WebAPI";
             });
 
             var app = builder.Build();
