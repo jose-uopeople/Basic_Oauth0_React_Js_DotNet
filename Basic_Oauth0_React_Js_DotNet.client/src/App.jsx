@@ -11,6 +11,7 @@ export const App = () => {
                 <Link to="/">Home</Link><br />
                 <Link to="/about">About</Link><br />
                 <Link to="/weatherforecastpage">Weather Forecast</Link><br />
+                <Link to="/logout">Logout</Link><br />
             </div>
             <Routes />
         </>

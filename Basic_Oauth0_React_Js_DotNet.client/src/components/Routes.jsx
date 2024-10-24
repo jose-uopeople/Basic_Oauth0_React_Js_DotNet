@@ -5,6 +5,7 @@ import { AuthenticationGuard } from "./authentication-guard";
 import About from '../components/About';
 import WeatherForecastPage from '../components/WeatherForecastPage';
 import Loading from '../components/Loading';
+import Logout from '../components/Logout';
 
 
 const AppRoutes = () => {
@@ -16,6 +17,7 @@ const AppRoutes = () => {
                 path='/weatherforecastpage'
                 element={<AuthenticationGuard component={WeatherForecastPage} />}
             />
+            <Route path="/logout" element={<Logout />} />
         </Routes>
     );
 };
